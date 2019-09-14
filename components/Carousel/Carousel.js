@@ -22,7 +22,6 @@ function Carousel() {
   const topDiv = document.createElement('div')
   const leftButton = topDiv.appendChild(document.createElement('div'))
 
-  //images in between
   const image1 = topDiv.appendChild(document.createElement('img'))
   image1.src = "./assets/carousel/mountains.jpeg"
   image1.style.display = "block"
@@ -40,7 +39,10 @@ function Carousel() {
 
   topDiv.classList.add('carousel')
   leftButton.classList.add('left-button')
+  leftButton.textContent = "<"
   rightButton.classList.add('right-button')
+  rightButton.textContent = ">"
+
 
   let currIndex = 0;
   const photoArray = [image1, image2, image3, image4]

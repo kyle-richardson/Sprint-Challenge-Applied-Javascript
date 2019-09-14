@@ -20,7 +20,6 @@
 
 function Carousel() {
   const topDiv = document.createElement('div')
-  const leftButton = topDiv.appendChild(document.createElement('div'))
 
   const image1 = topDiv.appendChild(document.createElement('img'))
   image1.src = "./assets/carousel/mountains.jpeg"
@@ -35,6 +34,7 @@ function Carousel() {
   const image4 = topDiv.appendChild(document.createElement('img'))
   image4.src = "./assets/carousel/turntable.jpeg"
 
+  const leftButton = topDiv.appendChild(document.createElement('div'))
   const rightButton = topDiv.appendChild(document.createElement('div'))
 
   topDiv.classList.add('carousel')
@@ -46,23 +46,27 @@ function Carousel() {
 
   let currIndex = 0;
   const photoArray = [image1, image2, image3, image4]
+  photoArray.forEach(ele => {
+    ele.classList.add('fadein')
+  })
+
+  const getNewImage = (photo,ind) => {
+    if(ind === currIndex) {
+      photo.style.display = "block"
+    }
+    else {
+      photo.style.display = "none"
+    } 
+  }
 
   leftButton.addEventListener('click', e=> {
     currIndex===3 ? currIndex = 0 : currIndex+=1
-    photoArray.forEach((photo,ind) => {
-      (ind === currIndex) 
-        ? photo.style.display = "block" 
-        : photo.style.display = "none"
-    })
+    photoArray.forEach(getNewImage)
   })
 
   rightButton.addEventListener('click', e=> {
     currIndex===0 ? currIndex = 3 : currIndex-=1
-    photoArray.forEach((photo,ind) => {
-      (ind === currIndex) 
-        ? photo.style.display = "block" 
-        : photo.style.display = "none"
-    })
+    photoArray.forEach(getNewImage)
   })
 
   return topDiv
